@@ -56,8 +56,31 @@ $(function () {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
-    var element = $('body')
+    var element,
+      menuIcon
+
+    beforeEach(function () {
+      element = $('body')
+      menuIcon = $('.menu-icon-link')
+    })
+
     it('is hidden by default', function () {
+      expect(element.attr('class')).toEqual('menu-hidden')
+    })
+
+    /* TODO: Write a test that ensures the menu changes
+        * visibility when the menu icon is clicked. This test
+        * should have two expectations: does the menu display when
+        * clicked and does it hide when clicked again.
+        */
+
+    it('it changes visibility when its icon is clicked on', function () {
+      // click first time toggleClass
+      menuIcon.trigger('click')
+      expect(element.attr('class')).not.toEqual('menu-hidden')
+
+      // click second time
+      menuIcon.trigger('click')
       expect(element.attr('class')).toEqual('menu-hidden')
     })
   })
