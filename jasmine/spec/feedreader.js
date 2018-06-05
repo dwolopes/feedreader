@@ -65,7 +65,7 @@ $(function () {
     })
 
     it('is hidden by default', function () {
-      expect(element.attr('class')).toEqual('menu-hidden')
+      expect(element.hasClass('menu-hidden')).toBe(true)
     })
 
     /* TODO: Write a test that ensures the menu changes
@@ -77,11 +77,11 @@ $(function () {
     it('it changes visibility when its icon is clicked on', function () {
       // click first time toggleClass
       menuIcon.trigger('click')
-      expect(element.attr('class')).not.toEqual('menu-hidden')
+      expect(element.hasClass('menu-hidden')).toBe(false)
 
       // click second time
       menuIcon.trigger('click')
-      expect(element.attr('class')).toEqual('menu-hidden')
+      expect(element.hasClass('menu-hidden')).toBe(true)
     })
   })
 
