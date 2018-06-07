@@ -74,7 +74,7 @@ $(function () {
         * clicked and does it hide when clicked again.
         */
 
-    it('it changes visibility when its icon is clicked on', function () {
+    it('changes visibility when its icon is clicked on', function () {
       // click first time toggleClass
       menuIcon.trigger('click')
       expect(element.hasClass('menu-hidden')).toBe(false)
@@ -87,6 +87,10 @@ $(function () {
 
   /* TODO: Write a new test suite named "Initial Entries" */
   describe('Initial Entries', function () {
+    beforeEach(function (done) {
+      window.loadFeed(0, function () { done() })
+      feedElement = $('.feed')
+    })
 
     /* TODO: Write a test that ensures when the loadFeed
       * function is called and completes its work, there is at least
@@ -94,7 +98,11 @@ $(function () {
       * Remember, loadFeed() is asynchronous so this test will require
       * the use of Jasmine's beforeEach and asynchronous done() function.
     */
+    it('in loadFeed function, there is at least a single one entry after done', function (done) {
 
+      expect(feedElement.children().length > 0).toBe(true)
+      done()
+    })
     /* TODO: Write a new test suite named "New Feed Selection" */
 
     /* TODO: Write a test that ensures when a new feed is loaded
