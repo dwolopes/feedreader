@@ -56,7 +56,7 @@ $(function () {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
-    var element,
+    let element,
       menuIcon
 
     beforeEach(function () {
@@ -88,8 +88,7 @@ $(function () {
   /* TODO: Write a new test suite named "Initial Entries" */
   describe('Initial Entries', function () {
     beforeEach(function (done) {
-      window.loadFeed(0, function () { done() })
-      feedElement = $('.feed')
+      loadFeed(0, function () { done() })
     })
 
     /* TODO: Write a test that ensures when the loadFeed
@@ -99,20 +98,32 @@ $(function () {
       * the use of Jasmine's beforeEach and asynchronous done() function.
     */
     it('in loadFeed function, there is at least a single one entry after done', function (done) {
-      expect(feedElement.children().length > 0).toBe(true)
+      expect($('.feed .entry').length).toBeGreaterThan(0)
       done()
     })
   })
 
   /* TODO: Write a new test suite named "New Feed Selection" */
   describe('New Feed Selection', function () {
+    let firstFeedReturn,
+      secondFeedReturn
     beforeEach(function (done) {
-      window.loadFeed(0, function () { done() })
+      loadFeed(0, function () {
+        firstFeedReturn = $('.feed').html()
+        loadFeed(1, function () {
+          secondFeedReturn = $('.feed').html()
+          done()
+        })
+      })
     })
 
     /* TODO: Write a test that ensures when a new feed is loaded
       * by the loadFeed function that the content actually changes.
       * Remember, loadFeed() is asynchronous.
     */
+    it('the content actually changes', function (done) {
+      expect(firstFeedReturn).not.toEqual(secondFeedReturn)
+      done()
+    })
   })
 }())
