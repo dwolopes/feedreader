@@ -99,11 +99,16 @@ $(function () {
       * the use of Jasmine's beforeEach and asynchronous done() function.
     */
     it('in loadFeed function, there is at least a single one entry after done', function (done) {
-
       expect(feedElement.children().length > 0).toBe(true)
       done()
     })
-    /* TODO: Write a new test suite named "New Feed Selection" */
+  })
+
+  /* TODO: Write a new test suite named "New Feed Selection" */
+  describe('New Feed Selection', function () {
+    beforeEach(function (done) {
+      window.loadFeed(0, function () { done() })
+    })
 
     /* TODO: Write a test that ensures when a new feed is loaded
       * by the loadFeed function that the content actually changes.
